@@ -3,30 +3,43 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
 <h:head>
 	<title>SROKA S.A.</title>
 </h:head>
 <h:body>
+	<p:panel header="Kalkulator Kredytowy firmy Sroka" closable="false"
+		widgetVar="panel">
+		<h:form id="bla">
+			<h:panelGrid id="panelGrid" columns="3" cellpadding="5">
 
-	<h1>Kalkulator Kredytowy firmy Sroka</h1>
+				<p:outputLabel for="amount" value="Kwota:" />
+				<p:inputText id="amount" value="#{loanCalcBB.amount}"
+					required="true" requiredMessage="Nie podano kwoty" />
+				<p:message for="amount" />
 
-	<h:form id="bla">
-  		kwota: <h:inputText value="#{loanCalcBB.amount}" />
-		<br />
-  		lata: <h:inputText value="#{loanCalcBB.year}" />
-		<br />
-		oprocentowanie: <h:inputText value="#{loanCalcBB.interest}" />
-		<br />
-		<h:messages id="msg" />
+				<p:outputLabel for="year" value="Lata:" />
+				<p:inputText id="year" value="#{loanCalcBB.year}" required="true"
+					requiredMessage="Nie podano liczby Lat" />
+				<p:message for="year" />
 
-		<h:commandButton value="Policz" action="#{loanCalcBB.calc()}"/>
-		<br />
-		<h:commandButton value="Policz (AJAX)" action="#{loanCalcBB.calc_AJAX()}">
-			<f:ajax execute="@form" render="msg" />
-		</h:commandButton>
-		<br />
-	</h:form>
+				<p:outputLabel for="interest" value="Oprocentowanie:" />
+				<p:inputText id="interest" value="#{loanCalcBB.interest}"
+					required="true" requiredMessage="Nie podano oprocentowania" />
+				<p:message for="interest" />
+
+				<p:commandButton value="Policz" action="#{loanCalcBB.calc()}"
+					update="@form" />
+				<p:commandButton value="Policz (AJAX)"
+					action="#{loanCalcBB.calc_AJAX()}" update="@form, msg" />
+					
+			</h:panelGrid>
+			<p:messages id="msg" />
+		</h:form>
+
+	</p:panel>
 
 </h:body>
 </html>
