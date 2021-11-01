@@ -16,29 +16,29 @@ public class LoanCalcBB {
 	private Random rand = new Random();
 
 	
-	private String amount = String.valueOf(1000 * (rand.nextInt(4)+1));
-	private String year = String.valueOf(1 * (rand.nextInt(4)+1));
-	private String interest = String.valueOf(1 * (rand.nextInt(9)+1));
+	private Double amount = Double.valueOf(1000 * (rand.nextInt(10)+1));
+	private Double year = Double.valueOf(1 * (rand.nextInt(5)+1));
+	private Double interest = Double.valueOf(1 * (rand.nextInt(200)+1));
 	private Double result;
 
 	
 	
-	public String getAmount() {
+	public Double getAmount() {
 		return amount;
 	}
-	public void setAmount(String amount) {
+	public void setAmount(Double amount) {
 		this.amount = amount;
 	}
-	public String getYear() {
+	public Double getYear() {
 		return year;
 	}
-	public void setYear(String year) {
+	public void setYear(Double year) {
 		this.year = year;
 	}
-	public String getInterest() {
+	public Double getInterest() {
 		return interest;
 	}
-	public void setInterest(String interest) {
+	public void setInterest(Double interest) {
 		this.interest = interest;
 	}
 	public Double getResult() {
@@ -55,9 +55,6 @@ public class LoanCalcBB {
 
 	public boolean doTheMath() {
 		try {
-			double amount = Double.parseDouble(this.amount);
-			double year = Double.parseDouble(this.year);
-			double interest = Double.parseDouble(this.interest);
 
 			result = ((interest / 100 * amount) + amount) / (year * 12);
 			
