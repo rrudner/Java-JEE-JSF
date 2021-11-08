@@ -6,53 +6,56 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
 
-<h:head>
-	<title>SROKA S.A.</title>
-</h:head>
-<h:body>
-	<p:panel header="Kalkulator Kredytowy firmy Sroka" closable="false"
-		widgetVar="panel">
-		<h:form id="bla">
-			<h:panelGrid id="panelGrid" columns="3" cellpadding="5">
+<ui:composition template="/templates/page-template.xhtml">
 
-				<p:outputLabel for="amount" value="Kwota:" />
-				<p:inputText id="amount" value="#{loanCalcBB.amount}"
-					required="true" requiredMessage="Nie podano kwoty" 
-					converterMessage="Podano zły typ danych"
-					validatorMessage="wartość spoza zakresu (1k - 10k)">
-					<f:validateDoubleRange minimum="1000" maximum="10000"/>
-				</p:inputText>
-				<p:message for="amount" />
+	<ui:define name="pageContent">
 
-				<p:outputLabel for="year" value="Lata:" />
-				<p:inputText id="year" value="#{loanCalcBB.year}" required="true"
-					requiredMessage="Nie podano liczby Lat"
-					converterMessage="Podano zły typ danych"
-					validatorMessage="wartość spoza zakresu (1 - 5)">
-					<f:validateDoubleRange minimum="1" maximum="5"/>
-				</p:inputText>
-					
-				<p:message for="year" />
+		<p:panel header="Kalkulator Kredytowy firmy Sroka" closable="false"
+		
+			widgetVar="panel">
+			<h:form id="bla">
+				<h:panelGrid id="panelGrid" columns="3" cellpadding="5">
 
-				<p:outputLabel for="interest" value="Oprocentowanie:" />
-				<p:inputText id="interest" value="#{loanCalcBB.interest}"
-					required="true" requiredMessage="Nie podano oprocentowania"
-					converterMessage="Podano zły typ danych"
-					validatorMessage="wartość spoza zakresu (1 - 200)">
-					<f:validateDoubleRange minimum="1" maximum="200"/>
-				</p:inputText>
-				<p:message for="interest" />
+					<p:outputLabel for="amount" value="Kwota:" />
+					<p:inputText id="amount" value="#{loanCalcBB.amount}"
+						required="true" requiredMessage="Nie podano kwoty"
+						converterMessage="Podano zły typ danych"
+						validatorMessage="wartość spoza zakresu (1k - 10k)">
+						<f:validateDoubleRange minimum="1000" maximum="10000" />
+					</p:inputText>
+					<p:message for="amount" />
 
-				<p:commandButton value="Policz" action="#{loanCalcBB.calc()}"
-					update="@form" />
-				<p:commandButton value="Policz (AJAX)"
-					action="#{loanCalcBB.calc_AJAX()}" update="@form, msg" />
+					<p:outputLabel for="year" value="Lata:" />
+					<p:inputText id="year" value="#{loanCalcBB.year}" required="true"
+						requiredMessage="Nie podano liczby Lat"
+						converterMessage="Podano zły typ danych"
+						validatorMessage="wartość spoza zakresu (1 - 5)">
+						<f:validateDoubleRange minimum="1" maximum="5" />
+					</p:inputText>
 
-			</h:panelGrid>
-			<p:messages id="msg" />
-		</h:form>
+					<p:message for="year" />
 
-	</p:panel>
+					<p:outputLabel for="interest" value="Oprocentowanie:" />
+					<p:inputText id="interest" value="#{loanCalcBB.interest}"
+						required="true" requiredMessage="Nie podano oprocentowania"
+						converterMessage="Podano zły typ danych"
+						validatorMessage="wartość spoza zakresu (1 - 200)">
+						<f:validateDoubleRange minimum="1" maximum="200" />
+					</p:inputText>
+					<p:message for="interest" />
 
-</h:body>
+					<p:commandButton value="Policz" action="#{loanCalcBB.calc()}"
+						update="@form" />
+					<p:commandButton value="Policz (AJAX)"
+						action="#{loanCalcBB.calc_AJAX()}" update="@form, msg" />
+
+				</h:panelGrid>
+				<p:messages id="msg" />
+			</h:form>
+
+		</p:panel>
+
+	</ui:define>
+
+</ui:composition>
 </html>
